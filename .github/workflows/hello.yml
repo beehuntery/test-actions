@@ -8,3 +8,4 @@ jobs:                             # ジョブの定義
       - uses: actions/checkout@v4 # アクションの呼び出し
       - run: ls -la
       - run: python -V
+      - run: echo "${TEST_ACTIONS}"
