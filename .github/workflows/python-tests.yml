@@ -1,6 +1,6 @@
 name: Python Tests
 on:
-  push:
+  pull_request:
     branches: [ main ]
     paths: ['*.py', 'requirements.txt']
 
@@ -23,7 +23,21 @@ jobs:
       - name: Install dependencies
         run: |
           python -m pip install --upgrade pip
-          pip install pytest
+          pip install -r requirements.txt
 
-      - name: Run tests
-        run: pytest
+      - name: Run tests and capture output
+        id: pytest
+        run: |
+            pytest --maxfail=1 --disable-warnings -q > pytest-output.txt
+      
+      - name: Create PR comment with test result
+        uses: marocchino/sticky-pull-request-comment@v2
+        with:
+          message: |
+            **Pytest Results**
+            ```
+            ${{ steps.pytest.outputs.stdout }}
+            ```
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+  
