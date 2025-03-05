@@ -28,7 +28,7 @@ jobs:
       - name: Run tests and capture output
         id: pytest
         run: |
-            pytest --maxfail=1 --disable-warnings -q > pytest-output.txt
+            pytest
       
       - name: Create PR comment with test result
         uses: marocchino/sticky-pull-request-comment@v2
