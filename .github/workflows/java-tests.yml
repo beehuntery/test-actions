@@ -26,11 +26,11 @@ jobs:
 
       - name: Report Test Results
         # dorny/test-reporter を使用してJUnit形式のテスト結果をPRにコメントとして投稿
-        uses: dorny/test-reporter@v2
+        uses: dorny/test-reporter@v1
         if: always()
         with:
           name: JUnit Test Results
           path: target/surefire-reports/*.xml
-          reporter: junit
+          reporter: java-junit
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
