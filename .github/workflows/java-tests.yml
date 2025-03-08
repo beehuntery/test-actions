@@ -2,7 +2,7 @@ name: Java CI with Maven
 on:
   pull_request_target:
     branches: [ main ]
-    paths: ['*.java', 'pom.xml']
+    paths: ['src/main/java/*.java', 'src/test/java/*.java', 'pom.xml']
 
 jobs:
   build-and-test:
