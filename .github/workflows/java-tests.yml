@@ -24,6 +24,12 @@ jobs:
       - name: Run tests with Maven
         run: mvn test
 
+      # このステップでXMLレポートが生成されているか確認
+      - name: List test report files
+        run: |
+          echo "Listing files in target/surefire-reports:"
+          ls -al target/surefire-reports
+
       - name: Report Test Results
         # dorny/test-reporter を使用してJUnit形式のテスト結果をPRにコメントとして投稿
         uses: dorny/test-reporter@v1
